@@ -4,7 +4,7 @@
 Repositório criado com o objetivo de desenvolver o Projeto Chronos Shift, um software que deverá controlar jornada de trabalho, ponto, escalas de trabalho e plantão.
 
 
-Integrantes/colaboradores do projeto: Gabriel de Souza Silva, Arthur Comper da Silva, Ana Júlia Martins Silva, Mariana Ferreira Vilar,
+Integrantes/colaboradores do projeto: Gabriel de Souza Silva, Arthur Comper da Silva, Ana Júlia Martins Silva, Mariana Ferreira Vilar, Warren Lorran Souza Silva,
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
