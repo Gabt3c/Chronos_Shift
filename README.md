@@ -14,3 +14,4 @@ This repository was created for the development of the Chronos Shift Project, a 
 
 Project Members / Contributors: Gabriel de Souza Silva, Warren Lorran Souza Silva, Arthur Comper Da Silva, Ana Júlia Martins Silva, Mariana Ferreira Vilar,
 
+'''teste request pull arthur'''
