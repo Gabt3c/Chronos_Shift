@@ -82,19 +82,19 @@ public class Ponto {
     }
 
     public String getHorarioEntrada() {
-        return this.horarioEntrada;
+        return "Horário de entrada: " + this.horarioEntrada;
     }
 
     public String getHorarioSaida() {
-        return this.horarioSaida;
+        return "Horário de saída: " + this.horarioSaida;
     }
 
     public String getPausaInicio() {
-        return this.pausaInicio;
+        return "Horário de início da pausa: " + this.pausaInicio;
     }
 
     public String getPausaFim() {
-        return this.pausaFim;
+        return "Horário de fim da pausa: " + this.pausaFim;
     }
 
     public String getJustificativa() {

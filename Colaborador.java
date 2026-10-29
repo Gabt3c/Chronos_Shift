@@ -39,6 +39,34 @@ public class Colaborador {
         this.ponto.ajustarPonto(novaEntrada, novaSaida, novaPausaInicio, novaPausaFim, justificativa);
     }
 
+    public void setDataReg(String dataReg){
+        this.ponto.setDataReg(dataReg);
+    }
+
+    //Retornos de ponto
+    public String getDataReg() {
+        return this.ponto.getDataReg();
+    }
+
+    public String getHorarioEntrada() {
+        return this.ponto.getHorarioEntrada();
+    }
+
+    public String getHorarioSaida() {
+        return this.ponto.getHorarioSaida();
+    }
+
+    public String getPausaInicio() {
+        return this.ponto.getPausaInicio();
+    }
+
+    public String getPausaFim() {
+        return this.ponto.getPausaFim();
+    }
+
+    public String getJustificativa() {
+        return this.ponto.getJustificativa();
+    }
     // Métodos de leitura dos dados do colaborador.
     public String getNome() {
         return nome;
