@@ -45,7 +45,7 @@ public class Ponto {
     }
 
     // 1. Assinatura definida pelo Arthur (recebe apenas a justificativa)
-    public void ajustarPonto(String justificativa) {
+    public void justificarSugestao(String justificativa) {
         if (justificativa != null && !justificativa.isBlank()) {
             this.justificativa = justificativa;
         }
@@ -69,8 +69,8 @@ public class Ponto {
 
     // 3. Assinatura completa (atualiza os 4 horários e regista a justificativa)
     public void ajustarPonto(String novaEntrada, String novaSaida, String novaPausaInicio, String novaPausaFim, String justificativa) {
+        justificarSugestao(justificativa);
         ajustarPonto(novaEntrada, novaSaida, novaPausaInicio, novaPausaFim);
-        ajustarPonto(justificativa);
     }
 
     public String getDataReg() {
