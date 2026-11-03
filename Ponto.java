@@ -15,6 +15,17 @@ public class Ponto {
     private String pausaFim;
     private String justificativa;
 
+    private static List <Ponto> historicoPontos = new ArrayList<>();
+
+    public void salvarPonto() {
+        if (!historicoPontos.contains(this)) {
+            historicoPontos.add(this);
+        }
+    }
+    public static List <Ponto> gethistoricoPontos() {
+        return historicoPontos;
+    }
+
     private String obterHoraAtualFormatada() {
         return LocalTime.now().format(FORMATADOR_HORA);
     }
@@ -24,18 +35,22 @@ public class Ponto {
             this.dataReg = LocalDate.now().format(FORMATADOR_DATA);
         }
         this.horarioEntrada = obterHoraAtualFormatada();
+        salvarPonto();
     }
 
     public void registrarSaida() {
         this.horarioSaida = obterHoraAtualFormatada();
+        salvarPonto();
     }
 
     public void registrarInicioPausa() {
         this.pausaInicio = obterHoraAtualFormatada();
+        salvarPonto();
     }
 
     public void registrarFimPausa() {
         this.pausaFim = obterHoraAtualFormatada();
+        salvarPonto();
     }
 
     public void registrarPausa() {
@@ -50,6 +65,7 @@ public class Ponto {
     public void justificarSugestao(String justificativa) {
         if (justificativa != null && !justificativa.isBlank()) {
             this.justificativa = justificativa;
+            salvarPonto();
         }
     }
 
@@ -67,6 +83,7 @@ public class Ponto {
         if (novaPausaFim != null && !novaPausaFim.isBlank()) {
             this.pausaFim = novaPausaFim;
         }
+        salvarPonto();
     }
 
     // 3. Assinatura completa (atualiza os 4 horários e regista a justificativa)
@@ -76,11 +93,12 @@ public class Ponto {
     }
 
     public String getDataReg() {
-        return this.dataReg;
+        return "Data do registro" + this.dataReg;
     }
 
     public void setDataReg(String dataReg) {
         this.dataReg = dataReg;
+        salvarPonto();
     }
 
     public String getHorarioEntrada() {
