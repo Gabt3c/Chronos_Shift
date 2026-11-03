@@ -1,21 +1,72 @@
-import java.util.List;
-import java.util.ArrayList;
 
 public class Colaborador {
     // Atributos definidos no diagrama UML.
     private String nome;
     private String cpfColaborador;
     private int codigoColaborador;
-    private List<Ponto> pontos;
+    private Ponto ponto;
 
     // Construtor para identificar o colaborador.
     public Colaborador(String nome, String cpfColaborador, int codigoColaborador) {
         this.nome = nome;
         this.cpfColaborador = cpfColaborador;
         this.codigoColaborador = codigoColaborador;
-        this.pontos = new ArrayList<>();
+        this.ponto= new Ponto();
     }
 
+    //Registros de ponto
+    public void registrarEntrada(){
+        this.ponto.registrarEntrada();
+    }
+
+    public void registrarSaida() {
+        this.ponto.registrarSaida();
+    }
+
+    public void registrarInicioPausa(){
+        this.ponto.registrarInicioPausa();
+    }
+
+    public void registrarFimPausa(){
+        this.ponto.registrarFimPausa();
+    }
+
+    public void registrarPausa(){
+        this.ponto.registrarFimPausa();
+    }
+
+    public void ajustarPonto(String novaEntrada, String novaSaida, String novaPausaInicio, String novaPausaFim, String justificativa){
+        this.ponto.ajustarPonto(novaEntrada, novaSaida, novaPausaInicio, novaPausaFim, justificativa);
+    }
+
+    public void setDataReg(String dataReg){
+        this.ponto.setDataReg(dataReg);
+    }
+
+    //Retornos de ponto
+    public String getDataReg() {
+        return this.ponto.getDataReg();
+    }
+
+    public String getHorarioEntrada() {
+        return this.ponto.getHorarioEntrada();
+    }
+
+    public String getHorarioSaida() {
+        return this.ponto.getHorarioSaida();
+    }
+
+    public String getPausaInicio() {
+        return this.ponto.getPausaInicio();
+    }
+
+    public String getPausaFim() {
+        return this.ponto.getPausaFim();
+    }
+
+    public String getJustificativa() {
+        return this.ponto.getJustificativa();
+    }
     // Métodos de leitura dos dados do colaborador.
     public String getNome() {
         return nome;
