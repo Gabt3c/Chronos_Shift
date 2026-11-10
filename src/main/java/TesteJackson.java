@@ -56,6 +56,7 @@ public class TesteJackson {
         System.out.println("Recovered Java object:");
         System.out.println(recuperado);
     }
+}
 
 /* 
 ########################
