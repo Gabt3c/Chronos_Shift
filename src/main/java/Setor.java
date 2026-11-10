@@ -1,3 +1,4 @@
+
 public class Setor {
     // Atributos do setor e colaborador vinculado a ele.
     private int codigoSetor;
