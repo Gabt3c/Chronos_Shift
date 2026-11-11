@@ -12,6 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 
+import java.util.ArrayList;
+import com.fasterxml.jackson.core.type.TypeReference;
 public class TesteJackson {
 
     // Objeto pequeno para testes, contendo apenas valores essenciais
@@ -29,6 +31,9 @@ public class TesteJackson {
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
+
+
+
         // 2. Cria um objeto para registrar ponto, ATENÇÃO PARA ISSO
         RegistroPonto registro = new RegistroPonto(
             1,
@@ -42,19 +47,36 @@ public class TesteJackson {
 
         File file = directory.resolve("teste-registro.json").toFile();
 
+        // Aqui começa a recuperação da lista
+        ArrayList<RegistroPonto> registros;
+
+            if (Files.exists(directory.resolve("teste-registro.json"))) {
+
+                registros = mapper.readValue(
+                file,
+                new TypeReference<ArrayList<RegistroPonto>>() {}
+        );
+
+        } else {
+
+            registros = new ArrayList<>();
+
+        }
         // 4. Muda de java para Json || Java -> JSON
-        mapper.writeValue(file, registro);
+            registros.add(registro);
+            mapper.writeValue(file, registros);
 
         System.out.println("JSON successfully saved!");//Só um retorno de que a parada funfou =D
 
         // 5. Recupera de Json para Java || JSON -> Java
-        RegistroPonto recuperado = mapper.readValue(
-            file,
-            RegistroPonto.class
+        ArrayList<RegistroPonto> recuperados = mapper.readValue(
+        file,
+        new TypeReference<ArrayList<RegistroPonto>>() {}
+    
         );
 
         System.out.println("Recovered Java object:");
-        System.out.println(recuperado);
+        System.out.println(recuperados);
     }
 }
 
