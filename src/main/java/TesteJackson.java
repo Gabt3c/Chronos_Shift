@@ -55,9 +55,9 @@ public class TesteJackson {
 
         }
 
-         // 2 Cria um objeto para registrar ponto, ATENÇÃO PARA ISSO
+         // 2 Cria um objeto para registrar ponto, ATENÇÃO PARA ISSO 2.1- depois do if/else pra ele ler os registros existentes e criar o proximo registro
         RegistroPonto registro = new RegistroPonto(
-            registros.size() + 1,
+            registros.size() + 1, //registro seja contabilizados e o próximo id seja o tamanho da lista + 1
             "ENTRADA",
             LocalDateTime.now()
         );
