@@ -1,3 +1,4 @@
+
 public class Escala {
     // Atributos da escala e colaborador vinculado a ela.
     private int codigoEscala;
