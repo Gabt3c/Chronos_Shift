@@ -8,10 +8,17 @@ public class Colaborador {
 
     // Construtor para identificar o colaborador.
     public Colaborador(String nome, String cpfColaborador, int codigoColaborador) {
+        this(nome, cpfColaborador, codigoColaborador,
+            new PersistenciaPontoJson(java.nio.file.Path.of("data", "registros-ponto.json")));
+    }
+
+    // Permite usar outra persistência sem mudar a forma de registrar o ponto.
+    public Colaborador(String nome, String cpfColaborador, int codigoColaborador,
+            PersistenciaPonto persistencia) {
         this.nome = nome;
         this.cpfColaborador = cpfColaborador;
         this.codigoColaborador = codigoColaborador;
-        this.ponto= new Ponto();
+        this.ponto = new Ponto(codigoColaborador, persistencia);
     }
 
     //Registros de ponto
@@ -32,7 +39,7 @@ public class Colaborador {
     }
 
     public void registrarPausa(){
-        this.ponto.registrarFimPausa();
+        this.ponto.registrarPausa();
     }
 
     public void ajustarPonto(String novaEntrada, String novaSaida, String novaPausaInicio, String novaPausaFim, String justificativa){
@@ -41,6 +48,11 @@ public class Colaborador {
 
     public void setDataReg(String dataReg){
         this.ponto.setDataReg(dataReg);
+    }
+
+    // Consulta o histórico persistido do colaborador, inclusive após reiniciar.
+    public java.util.List<RegistroPonto> consultarHistoricoPontos() {
+        return this.ponto.consultarHistoricoPontos();
     }
 
     //Retornos de ponto

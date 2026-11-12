@@ -1,91 +1,46 @@
-/* 
-esta classe é um experimento de persistência simples(ou não tão simples)
-que visa testar a implentação de um JSON como meio de persistir o registro de ponto
-*/
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-
-import java.io.File;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDateTime;
+import java.util.List;
 
-import java.util.ArrayList;
-import com.fasterxml.jackson.core.type.TypeReference;
 public class TesteJackson {
-
-    // Objeto pequeno para testes, contendo apenas valores essenciais
-    public record RegistroPonto(
-        int id,
-        String tipo,
-        LocalDateTime dataHora
-    ) {}
-
     public static void main(String[] args) throws Exception {
+        // O código identifica a pessoa e não é calculado pelo tamanho do histórico.
+        int codigoColaborador = args.length > 0 ? Integer.parseInt(args[0]) : 1;
+        String tipo = args.length > 1 ? args[1] : "ENTRADA";
+        Path arquivo = args.length > 2 ? Path.of(args[2])
+            : Path.of("data", "registros-ponto.json");
 
-        // 1. Configura Jackson
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
-        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        // Usa a mesma integração do projeto, evitando duas formas diferentes de salvar.
+        PersistenciaPonto persistencia = new PersistenciaPontoJson(arquivo);
+        Colaborador colaborador = new Colaborador("Colaborador de teste", "00000000000",
+            codigoColaborador, persistencia);
 
-
-
-        // 3. Aponta o diretório onde o arquivo será armazenado
-        Path directory = Path.of("data");
-        Files.createDirectories(directory);
-
-        File file = directory.resolve("teste-registro.json").toFile();
-
-        // Aqui começa a recuperação da lista
-        ArrayList<RegistroPonto> registros;
-
-            if (Files.exists(directory.resolve("teste-registro.json"))) {
-
-                registros = mapper.readValue(
-                file,
-                new TypeReference<ArrayList<RegistroPonto>>() {}
-        );
-
-        } else {
-
-            registros = new ArrayList<>();
-
+        // Cada ação gera um novo ID de registro para o mesmo código do colaborador.
+        switch (tipo) {
+            case "ENTRADA":
+                colaborador.registrarEntrada();
+                break;
+            case "SAIDA":
+                colaborador.registrarSaida();
+                break;
+            case "INICIO_PAUSA":
+                colaborador.registrarInicioPausa();
+                break;
+            case "FIM_PAUSA":
+                colaborador.registrarFimPausa();
+                break;
+            case "CONSULTAR":
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de marcação inválido.");
         }
 
-         // 2 Cria um objeto para registrar ponto, ATENÇÃO PARA ISSO 2.1- depois do if/else pra ele ler os registros existentes e criar o proximo registro
-        RegistroPonto registro = new RegistroPonto(
-            registros.size() + 1, //registro seja contabilizados e o próximo id seja o tamanho da lista + 1
-            "ENTRADA",
-            LocalDateTime.now()
-        );
-
-        // 4. Muda de java para Json || Java -> JSON
-            registros.add(registro);
-            mapper.writeValue(file, registros);
-
-        System.out.println("JSON successfully saved!");//Só um retorno de que a parada funfou =D
-
-        // 5. Recupera de Json para Java || JSON -> Java
-        ArrayList<RegistroPonto> recuperados = mapper.readValue(
-        file,
-        new TypeReference<ArrayList<RegistroPonto>>() {}
-    
-        );
-
-        System.out.println("Recovered Java object:");
-        System.out.println(recuperados);
+        // Recupera o arquivo e mostra os dois identificadores de cada marcação.
+        List<RegistroPonto> registros = colaborador.consultarHistoricoPontos();
+        for (RegistroPonto registro : registros) {
+            System.out.println("ID do registro: " + registro.getId()
+                + " | Código do colaborador: " + registro.getCodigoColaborador()
+                + " | Tipo: " + registro.getTipo()
+                + " | Data e hora: " + registro.getDataHora());
+        }
     }
 }
-
-/* 
-########################
-##CONSIDERAÇÕES FINAIS## 
-########################
-
-É perfeitamente plausível usarmos isso, tenho que admitir que não é a melhor solução e que o único 
-motivo para estarmos usando isso é pelo tempo apertado, mas se eu consegui resolver isso numa madrugada,
-vocês também conseguem. Se atentem às orientações que vou deixar no WhatsApp e vai dar tudo certo.
-*/
