@@ -33,14 +33,6 @@ public class TesteJackson {
 
 
 
-
-        // 2. Cria um objeto para registrar ponto, ATENÇÃO PARA ISSO
-        RegistroPonto registro = new RegistroPonto(
-            1,
-            "ENTRADA",
-            LocalDateTime.now()
-        );
-
         // 3. Aponta o diretório onde o arquivo será armazenado
         Path directory = Path.of("data");
         Files.createDirectories(directory);
@@ -62,6 +54,14 @@ public class TesteJackson {
             registros = new ArrayList<>();
 
         }
+
+         // 2 Cria um objeto para registrar ponto, ATENÇÃO PARA ISSO
+        RegistroPonto registro = new RegistroPonto(
+            registros.size() + 1,
+            "ENTRADA",
+            LocalDateTime.now()
+        );
+
         // 4. Muda de java para Json || Java -> JSON
             registros.add(registro);
             mapper.writeValue(file, registros);
