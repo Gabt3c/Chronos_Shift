@@ -7,14 +7,20 @@ public class Colaborador {
     public void registraPonto(Ponto ponto) {
 
     }
+
     public void solicitarFolga(Folga folga) {
 
     }
+
     public void solicitarAjustePonto(Ponto ponto) {
 
     }
+
     public void solicitarTrocaPlantao(Plantao plantao) {
         
     }
-    public double consultarSaldoHoras() { return 0.0; }
+
+    public double consultarSaldoHoras() { 
+        return 0.0; 
+    }
 }

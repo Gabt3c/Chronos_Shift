@@ -1,5 +1,4 @@
 public class Notificacao {
-    
     private String mensagem;
     private String dataEnvio;
     private boolean lida;
@@ -7,6 +6,7 @@ public class Notificacao {
     public void geraNotificacao() {
 
     }
+
     public void enviarAlerta() {
 
     }
