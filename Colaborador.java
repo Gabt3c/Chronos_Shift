@@ -1,82 +1,20 @@
-
 public class Colaborador {
-    // Atributos definidos no diagrama UML.
     private String nome;
     private String cpfColaborador;
     private int codigoColaborador;
     private Ponto ponto;
 
-    // Construtor para identificar o colaborador.
-    public Colaborador(String nome, String cpfColaborador, int codigoColaborador) {
-        this.nome = nome;
-        this.cpfColaborador = cpfColaborador;
-        this.codigoColaborador = codigoColaborador;
-        this.ponto= new Ponto();
-    }
+    public void registraPonto(Ponto ponto) {
 
-    //Registros de ponto
-    public void registrarEntrada(){
-        this.ponto.registrarEntrada();
     }
+    public void solicitarFolga(Folga folga) {
 
-    public void registrarSaida() {
-        this.ponto.registrarSaida();
     }
+    public void solicitarAjustePonto(Ponto ponto) {
 
-    public void registrarInicioPausa(){
-        this.ponto.registrarInicioPausa();
     }
-
-    public void registrarFimPausa(){
-        this.ponto.registrarFimPausa();
+    public void solicitarTrocaPlantao(Plantao plantao) {
+        
     }
-
-    public void registrarPausa(){
-        this.ponto.registrarFimPausa();
-    }
-
-    public void ajustarPonto(String novaEntrada, String novaSaida, String novaPausaInicio, String novaPausaFim, String justificativa){
-        this.ponto.ajustarPonto(novaEntrada, novaSaida, novaPausaInicio, novaPausaFim, justificativa);
-    }
-
-    public void setDataReg(String dataReg){
-        this.ponto.setDataReg(dataReg);
-    }
-
-    //Retornos de ponto
-    public String getDataReg() {
-        return this.ponto.getDataReg();
-    }
-
-    public String getHorarioEntrada() {
-        return this.ponto.getHorarioEntrada();
-    }
-
-    public String getHorarioSaida() {
-        return this.ponto.getHorarioSaida();
-    }
-
-    public String getPausaInicio() {
-        return this.ponto.getPausaInicio();
-    }
-
-    public String getPausaFim() {
-        return this.ponto.getPausaFim();
-    }
-
-    public String getJustificativa() {
-        return this.ponto.getJustificativa();
-    }
-    // Métodos de leitura dos dados do colaborador.
-    public String getNome() {
-        return nome;
-    }
-
-    public String getCpfColaborador() {
-        return cpfColaborador;
-    }
-
-    public int getCodigoColaborador() {
-        return codigoColaborador;
-    }
+    public double consultarSaldoHoras() { return 0.0; }
 }
