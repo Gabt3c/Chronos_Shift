@@ -1,4 +1,8 @@
 public class Gestor extends Colaborador {
+
+    public Gestor(String nome, String cpfGestor, int codigoGestor){
+        super(nome, cpfGestor, codigoGestor);
+    }
     public void criarEscala(Escala escala) {
 
     }
